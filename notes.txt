@@ -1,0 +1,41 @@
+#################### 1 ####################
+Start with Django with platzi course
+#################### 1 ####################
+
+1. we need to create a development environment
+
+for windows:
+    1.1. py -m venv ven
+    1.2. .\Scripts\activate
+
+for linux:
+    1.1. python3 -m venv venv
+    1.2. source venv/bin/activate
+
+2. Install Django framework:
+    2. pip install django
+
+3. Create a project with django:
+    3. django-admin startproject project_name
+
+4. Inicialize git and use "touch" to avoid push .venv folder to the github repository
+    4.1. git init
+    4.2. touch .gitignore
+
+5. Run server (we need to be into the app folder):
+    5. py manage.py runserver
+
+6. Project and apps in Django:
+    Django names project like a container of multiples apps, one app is just functionality of our project:
+    Example:
+    Instagram = Project
+    Feed = app
+    Stories = app
+    Messages = app
+
+7. To create a new app into a our project, we need to type the next code in our terminal
+    7. Into a project folder: py manage.py startapp name_of_the_app
+
+8. For each app, we need to define its urls.py file wherein it includes throghout path() function. 
+    Also, we have to include the path of our new urls.py file for each app into our main urls.py 
+    file (main directory)  
