@@ -34,8 +34,23 @@ for linux:
     Messages = app
 
 7. To create a new app into a our project, we need to type the next code in our terminal
-    7. Into a project folder: py manage.py startapp name_of_the_app
+    7.1 Into a project folder: py manage.py startapp name_of_the_app
+    7.2 Don't forget we need to include this new app into the settings.py file (project folder), in the section "INSTALLED_APPS", it must be aim to apps.py of each app folder.
 
 8. For each app, we need to define its urls.py file wherein it includes throghout path() function. 
     Also, we have to include the path of our new urls.py file for each app into our main urls.py 
-    file (main directory)  
+    file (main directory)
+
+9. ORM = Object Relational Mapping. We use this method to transform tables of our databases to OOP structure in Django. So, we create models of our tables.
+
+    9.1 We create into "models.py" file into our app, the classes related to each table. Don't forget to see how we specify the data-types for each attribute (attribute = fields of our table). Peed how we relate primary keys with foreign key. Also, check how we don't create a attribute with "id" field, because Django establishes that automatically.
+
+    9.2 When we already create the classes, we need to execute the next code in the terminal:
+        9.2.1 py manage.py makemigrations app_name: This code create a new folder into the app folder, named "migrations" and file "0001_initial.py". This code execute the ORM method.
+
+        9.2.2 py manage.py migrate: this code apply and execute the file named "0001_initial.py" wherein we can see the model structure of our classes or tables. Now, this file is executed in the database choiced (this case, sqlite3). 
+
+
+
+
+
