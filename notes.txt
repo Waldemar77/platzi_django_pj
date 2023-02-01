@@ -48,8 +48,18 @@ for linux:
     9.2 When we already create the classes, we need to execute the next code in the terminal:
         9.2.1 py manage.py makemigrations app_name: This code create a new folder into the app folder, named "migrations" and file "0001_initial.py". This code execute the ORM method.
 
-        9.2.2 py manage.py migrate: this code apply and execute the file named "0001_initial.py" wherein we can see the model structure of our classes or tables. Now, this file is executed in the database choiced (this case, sqlite3). 
+        9.2.2 py manage.py migrate: this code apply and execute the file named "0001_initial.py" wherein we can see the model structure of our classes or tables. Now, this file is executed in the database choiced (this case, sqlite3).
+    
+    Note: for each change in our classes, we need to execute these commands again.
 
+10. Django allows us to use its interactive console, in order to interact with python console.
+    10.1 The command is: py manage.py shell
+    10.2 Once we are into the interactive console, we can import our app classes and interact with our databases.
+    For example, we can see all attributes (list of the objects or records) with the function .all()
+        ex. Class.objects.all()
+    Another example could be when we have to create a new record into our model:
+        ex. record_1 = Class(attribute_1 = "attribute_1", attribute_2 = "attribute_2").save() or
+            Class.objects.create(attribute_1 = "attribute_1", attribute_2 = "attribute_2") 
 
 
 

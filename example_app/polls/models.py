@@ -4,7 +4,7 @@ class Question(models.Model):
 
     # Attributes of this class are the columns of the a table
     # Id column it isn't necessary wrote because Django sets it automatically
-    question_test = models.CharField(max_length=200)
+    question_text = models.CharField(max_length=200)
     pub_date = models.DateTimeField("date published")
 
 class Choice(models.Model):
