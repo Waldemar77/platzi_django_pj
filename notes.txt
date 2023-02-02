@@ -54,13 +54,65 @@ for linux:
 
 10. Django allows us to use its interactive console, in order to interact with python console.
     10.1 The command is: py manage.py shell
+    
     10.2 Once we are into the interactive console, we can import our app classes and interact with our databases.
-    For example, we can see all attributes (list of the objects or records) with the function .all()
-        ex. Class.objects.all()
-    Another example could be when we have to create a new record into our model:
-        ex. record_1 = Class(attribute_1 = "attribute_1", attribute_2 = "attribute_2").save() or
-            Class.objects.create(attribute_1 = "attribute_1", attribute_2 = "attribute_2") 
+    ** For example, we can see all attributes (list of the objects or records) with the function .all()
+        ex. ClassModel.objects.all()
+    ** Another example could be when we have to create a new record into our model:
+        ex. record_1 = ClassModel(attribute_1 = "attribute_1", attribute_2 = "attribute_2").save() or
+            ClassModel.objects.create(attribute_1 = "attribute_1", attribute_2 = "attribute_2") 
+    
+    ** Likewise, we can use the .get() method to filter for primary key, the filter always must return 1 record:
+        ex. ClassModel.objects.get(pk=1)
+    ** Conversaly, we able to filter with some special features using "__" before "=" signal, for example:
+        ex. ClassModel.objects.get(pub_date__year=timezone.now().year)
+    If the filter doesn't return outcomes, exist a warning to indicate the record doesn't exist in the current model, we can use this warning when we want to control the flow of our program managing the exceptions.
+
+    ** Furthermore, we can use .filter() function to get a iterable object with the outcomes:
+        ex. ClassModel.objects.filter(pub_date__year=timezone.now().year)
+            ClassModel.objects.filter(question_text__startswith="¿cual")
+        ** Some functions to keep in mint:
+        __gt = Mayor que
+        __gte = Mayor o igual que
+        __lt = Menor que
+        __lte = Menos o igual que
+        __startswith = Empieza con
+        __endswith = Termina con
+        __contains: Contiene
+
+    ** To finish, we can use the foreign key and primary key for interact with data. The relation between two tables is manage for the function "className"_set.all(). When we create our ForeignKey into the class model, we should use the parameter "relate_name=" to especify the name of the relacion, example:
+
+        ClassModel.className_set.all()
+        it could be:
+        ClassModel.nameSetWithRelateName.all()
+
+        ex:
+        >>> q_1.question_choices.create(choice_text="azure data factory - avanzado", votes=0)
+        <Choice: azure data factory - avanzado>
+        >>> q_1.question_choices.create(choice_text="sql - avanzado", votes=0)
+        <Choice: sql - avanzado>
+        >>> q_1.question_choices.all()
+        <QuerySet [<Choice: Python3 - basico>, <Choice: Python3 - intermedio>, <Choice: Python3 - avanzado>, <Choice: azure data factory - avanzado>, <Choice: sql - avanzado>]>
+       
+        ex2:
+        >>> Choice.objects.filter(question__pub_date__year=timezone.now().year)
+        <QuerySet [<Choice: Python3 - basico>, <Choice: Python3 - intermedio>, <Choice: Python3 - avanzado>, <Choice: azure data factory - avanzado>, <Choice: sql - avanzado>]>
+
+11. Django allows us to create a super admin user, this one can access to a user interface in order to watch our model.
+Firstly, we can create a super user using the command:
+    py manage.py createsuperuser
+    
+    ** Here, we have to type our name, email and password. This credencial is critical to lost.
+
+Once we create our super user, we need to specify in the file "admin.py" the module of our app in order to show it in the admin user interface of django.
 
 
+12. Architecture of Django web app: MTV
+    M = Model (backend)
+    T = Template (frontend)
+    V = Views (backend)
 
+    Views allows us to define and program the logic of each web pages. When our view are ready, we use Templates to create the frontend of our app.
+
+13. 
 
