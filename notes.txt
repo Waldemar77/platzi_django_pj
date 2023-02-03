@@ -151,7 +151,7 @@ Example:
     If something into the flow of the view happens, we can redirect to other template.
     
     Another important concept is how can we get the values from the forms?
-    Once the user execute the botton "send", the information travel through the request.POST[] function. So, we can access to the dictionary of the python with the key value.
-        ex. request.POST['key_of_dictionary']  
+    Once the user execute the botton "send", the information travel through the request.POST[] function. So, we can access to the list of the python with the key value.
+        ex. request.POST['key_of_list']  
 
 

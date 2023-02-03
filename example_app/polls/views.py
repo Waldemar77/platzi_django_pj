@@ -28,7 +28,11 @@ def number_question(request, id_question):
 
 
 def results(request, id_question):
-    return HttpResponse(f'You are watching the results for the number question: {id_question}')
+    # We're using the get_object_or_404 function to manage the error http when the consult is not effective.
+    question_1 = get_object_or_404(Question, pk=id_question)
+    return render(request, 'polls/results.html', {
+        "question_1" : question_1
+    })
 
 
 def votes(request, id_question):
