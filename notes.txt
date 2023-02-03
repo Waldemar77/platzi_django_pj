@@ -122,7 +122,7 @@ After we define our views, we need to aggregate our views into the file urls.py 
             "django-html": "html"
         }
 
-    Into the template, we can programate the interactions between views and templates. We must keep in mint that functions in the view.py is a view of our app, so, into each view, we can renderize the template using the render() function. This one admit 3 parameters, the first one is the "request", the second one is the path of our template and the third one is the python diccionary with the variables that we need to use in our templates.
+    Into the template, we can programate the interactions between views and templates. We must keep in mint that functions in the view.py is a view of our app, so, into each view, we can render the template using the render() function. This one admit 3 parameters, the first one is the "request", the second one is the path of our template and the third one is the python diccionary with the variables that we need to use in our templates.
 
 15. All of the views must be a right response or error response. To manage the error 404 when the database consult is not effective, we can use the shortcut "get_object_or_404" from the django.shortcuts library.
 
@@ -141,9 +141,17 @@ Example:
     our template will use app_name:name
 
 17. Forms: The basic concepts.
-    We use html forms to create the forms structure. We have to understand we create the view with variables that probably contains a Model object. When we're renderize the view althrough templates, we use those variables in order to call the values of the model.
+    We use html forms to create the forms structure. We have to understand we create the view with variables that probably contains a Model object. When we're rendering the view althrough templates, we use those variables in order to call the values of the model.
     In addition, exist a excellent function in django to look out our forms with post method:
         {% csrf_token %}
     We shall use this line always.
 
- 
+18. The flow of Django views of our webapp is so interesting because we can render various views accoring to the need. Exists a new concepts to keep in mint:
+        HttpResponseRedirect(reverse('app_name:label_name_url', args=(parameter_of_url,)))
+    If something into the flow of the view happens, we can redirect to other template.
+    
+    Another important concept is how can we get the values from the forms?
+    Once the user execute the botton "send", the information travel through the request.POST[] function. So, we can access to the dictionary of the python with the key value.
+        ex. request.POST['key_of_dictionary']  
+
+
