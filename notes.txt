@@ -114,5 +114,36 @@ Once we create our super user, we need to specify in the file "admin.py" the mod
 
     Views allows us to define and program the logic of each web pages. When our view are ready, we use Templates to create the frontend of our app.
 
-13. 
+13. Views in Django. We can create views in functions python or classes python. Each view define the each page of our webapp. Always, the main parameter for our views includes "request", after that, we can add another parameter. The response of the return function could be a "HttpReponse".
+After we define our views, we need to aggregate our views into the file urls.py of the app file.
 
+14. Templates in Django. The front of our app is manage with templates by Django. We have to install a nice plugging called "Django" in VSC to facility the type code. Furthermore, we have to aggregate a line of code in the settings.json file of the VSC in order to be able to write HTML code and Django backend code. Here, this one:
+        "emmet.includeLanguages": {
+            "django-html": "html"
+        }
+
+    Into the template, we can programate the interactions between views and templates. We must keep in mint that functions in the view.py is a view of our app, so, into each view, we can renderize the template using the render() function. This one admit 3 parameters, the first one is the "request", the second one is the path of our template and the third one is the python diccionary with the variables that we need to use in our templates.
+
+15. All of the views must be a right response or error response. To manage the error 404 when the database consult is not effective, we can use the shortcut "get_object_or_404" from the django.shortcuts library.
+
+    ex. question = get_object_or_404(Model, pk=some_number)
+    If the pk is not found, Django automatically raise a 404 http error.
+
+
+16. If we need to change the name of the path in our url, we need to relate the url.py with our templates.
+The best way to do it, is to use the function "%% url %% and modify the url.py with a static variable and to be careful with the label "name" of each path.
+Example:
+    app_name="my_app_name"
+
+    #example: polls/1
+    path('<int:id_question>/detail', views.number_question, name='number_question')
+
+    our template will use app_name:name
+
+17. Forms: The basic concepts.
+    We use html forms to create the forms structure. We have to understand we create the view with variables that probably contains a Model object. When we're renderize the view althrough templates, we use those variables in order to call the values of the model.
+    In addition, exist a excellent function in django to look out our forms with post method:
+        {% csrf_token %}
+    We shall use this line always.
+
+ 

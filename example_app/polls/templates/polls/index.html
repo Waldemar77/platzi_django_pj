@@ -1,0 +1,15 @@
+<h1>Home Page for Polls</h1>
+
+{% if latest_question_list %}
+    <ol>
+    {% for q in latest_question_list %}
+        <li>
+            <a href="{% url 'polls:number_question' q.id %}">
+                {{q.question_text}}
+            </a>
+        </li>
+    {% endfor %}    
+    </ol>
+{% else %}
+    <p>No polls are available</p>
+{% endif %}
