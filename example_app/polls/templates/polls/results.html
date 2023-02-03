@@ -4,9 +4,11 @@
     {% for c in question_1.question_choices.all %}
         <li>
             <!-- we use pluralize function to add the "s" letter if the votes is greater than 1 -->
-            {{ c.choice_text }} ----| {{ c.votes }} vote{{ c.votes | pluralize }}
+            {{ c.choice_text }} ----| {{ c.votes }} vote{{ c.votes | pluralize:'y,ies' }}
         </li>
     {% endfor %}
 </ul>
 
 <a href="{% url 'polls:number_question' question_1.id %}"> Do you want to vote again? </a>
+<br>
+<a href=" {% url 'polls:index' %}">I want to return to home</a>
