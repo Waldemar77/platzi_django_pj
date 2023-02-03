@@ -1,0 +1,12 @@
+<h1>Results of the Polls for {{ question_1.question_text }}</h1>
+
+<ul>
+    {% for c in question_1.question_choices.all %}
+        <li>
+            <!-- we use pluralize function to add the "s" letter if the votes is greater than 1 -->
+            {{ c.choice_text }} ----| {{ c.votes }} vote{{ c.votes | pluralize }}
+        </li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'polls:number_question' question_1.id %}"> Do you want to vote again? </a>
