@@ -1,12 +1,36 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
+from django.views import generic
+
 from .models import Question, Choice
 
+"""
+# Generic Views or Class Generic Views.
 
-# Create your views here.
+class IndexView(generic.ListView):
+    template_name = 'polls/index.html'
+    context_object_name = 'latest_question_list'
+
+    # method to run query of our models
+    def get_queryset(self):
+        # order_by function allows us to get records, if we aggregate "-" before the key, it'll 
+        # sort the list descending.  
+        return Question.objects.order_by('-pub_date')[:5]
+
+class NumberQuestionView(generic.DetailView):
+    model = Question
+    template_name = 'polls/detail.html'
+    
+
+# using the inherit concept to avoid DRY
+class ResultView(generic.DetailView):
+    model = Question
+    template_name = 'polls/results.html'
+"""
 
 
+# Function Views
 def index(request):
 
     # In this variable, we get all questions from model object Question. 
@@ -33,7 +57,6 @@ def results(request, id_question):
     return render(request, 'polls/results.html', {
         "question_1" : question_1
     })
-
 
 def votes(request, id_question):
     
@@ -62,4 +85,5 @@ def votes(request, id_question):
         # we'll redirect to the user to 'question_results' view through the function 
         # reverse(), this one is the same code "% url %" used in the templates, but 
         # now it's wroten in python 
+        
         return HttpResponseRedirect(reverse('polls:question_results', args=(question_1.id,)))

@@ -154,4 +154,21 @@ Example:
     Once the user execute the botton "send", the information travel through the request.POST[] function. So, we can access to the list of the python with the key value.
         ex. request.POST['key_of_list']  
 
+19. Generic views of Django. Django can allows us to use a generic views when our pattern of code is standard. I mean, in order to reduce code and avoid to do DRY (Don't Repeat Yourself), we can programate class generic views.
+In the following link, we can read about each generic view of Django:
+https://ccbv.co.uk/
+
+So, we can import the generic views from django.views. The class should be called with Uppercase in its first letter and aggragate the word "view" to doesn't confuse with a ordinary class.
+
+Furthermore, the parameters of each class must be inherit generic.name_of_the_generic_view.
+Ex:
+from django.views import generic
+
+class IndexVies(generic.LoginView):
+    attribute_1
+    attribute_2
+
+Now, into the urls.py, we can configure the different way. First, each view must be called the function 
+as_view() and, the parameter into the path, doesn't is the direct parameter setted in the view.py, we must use "pk" word to call the primary key of the object.
+
 
